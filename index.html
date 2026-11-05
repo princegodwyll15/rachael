@@ -408,7 +408,7 @@
       </div>
     </main>
     <script>
-        //get any element by id
+      //get any element by id
       const $ = (id) => document.getElementById(id);
       let reply = "";
       $("open").onclick = () => {
@@ -452,7 +452,7 @@
           kind === "yes" &&
           !matchMedia("(prefers-reduced-motion: reduce)").matches
         ) {
-          for (let i = 0; i < 30; i++) {
+          for (let i = 0; i < 200; i++) {
             let h = document.createElement("span");
             h.className = "petal";
             h.textContent = i % 3 ? "♥" : "✦";
