@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#f8eee8" />
+    <title>A little note for Racheal</title>
+    <meta
+      name="description"
+      content="Something from the heart, from Prince Godwyll."
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #f8eee8;
+        color: #693440;
+        font-family: Georgia, "Times New Roman", serif;
+        min-height: 100vh;
+      }
+      body:before {
+        content: "";
+        position: fixed;
+        inset: 12px;
+        border: 1px solid #cba6a655;
+        pointer-events: none;
+        z-index: 10;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        padding: 35px 6%;
+        font:
+          10px Arial,
+          sans-serif;
+        letter-spacing: 2.6px;
+        text-transform: uppercase;
+      }
+      header span:last-child {
+        letter-spacing: 1px;
+        color: #98757b;
+      }
+      .page {
+        max-width: 1100px;
+        margin: auto;
+        padding: 45px 35px 30px;
+        text-align: center;
+      }
+      .eyebrow {
+        font:
+          10px Arial,
+          sans-serif;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #aa737d;
+      }
+      h1 {
+        font-weight: normal;
+        font-size: clamp(64px, 10vw, 116px);
+        line-height: 1.04;
+        letter-spacing: -4px;
+        margin: 20px 0;
+      }
+      h1 i {
+        color: #a54f64;
+      }
+      p {
+        font-size: 17px;
+        line-height: 1.9;
+        color: #8b6268;
+      }
+      .intro {
+        max-width: 420px;
+        margin: 25px auto;
+      }
+      .envelope {
+        display: block;
+        position: relative;
+        width: 270px;
+        height: 178px;
+        margin: 65px auto 34px;
+        border: 0;
+        background: #ecc8c6;
+        border-radius: 4px;
+        box-shadow: 0 20px 45px #6a34401a;
+        transition: transform 0.4s;
+        isolation: isolate;
+      }
+      .envelope:before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: #e4b5b6;
+        clip-path: polygon(0 0, 100% 0, 50% 58%);
+      }
+      .envelope:after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: #f0d1cd;
+        clip-path: polygon(0 20%, 50% 65%, 100% 20%, 100% 100%, 0 100%);
+        z-index: 2;
+      }
+      .envelope:hover {
+        transform: translateY(-8px) rotate(-2deg);
+      }
+      .seal {
+        position: relative;
+        z-index: 3;
+        display: inline-grid;
+        place-items: center;
+        border-radius: 50%;
+        width: 52px;
+        height: 52px;
+        background: #973b55;
+        color: #f5d7ce;
+        box-shadow: 0 3px 8px #6a344033;
+        font-size: 25px;
+      }
+      .hint {
+        font:
+          10px Arial,
+          sans-serif;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #ab7c83;
+      }
+      .footer {
+        margin: 64px auto 10px;
+        font-size: 12px;
+        color: #a17d81;
+      }
+      .footer span {
+        font-style: italic;
+      }
+      .ornament {
+        color: #b7818a;
+        font-size: 22px;
+        margin: 20px;
+      }
+      .letter {
+        display: none;
+        max-width: 680px;
+        margin: 15px auto;
+        background: #fffaf5;
+        border: 1px solid #dfc9c4;
+        padding: 50px 65px;
+        box-shadow: 0 20px 65px #6a34400a;
+        position: relative;
+        text-align: left;
+      }
+      .letter.show {
+        display: block;
+        animation: arrive 0.7s both;
+      }
+      .letter:before {
+        content: "";
+        position: absolute;
+        inset: 10px;
+        border: 1px solid #eadbd5;
+        pointer-events: none;
+      }
+      .letter h2 {
+        font-weight: normal;
+        font-size: 37px;
+        letter-spacing: -1px;
+        margin: 25px 0;
+      }
+      .letter p {
+        font-size: 16px;
+      }
+      .signature {
+        font-style: italic;
+        font-size: 22px !important;
+        color: #8b3e54;
+        margin-bottom: 0;
+      }
+      .question {
+        text-align: center;
+        border-top: 1px solid #e8d7d0;
+        padding-top: 28px;
+        margin-top: 30px;
+      }
+      .question h3 {
+        font-weight: normal;
+        font-size: 35px;
+        line-height: 1.3;
+        letter-spacing: -0.7px;
+        margin: 0 0 25px;
+      }
+      .buttons {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      button {
+        cursor: pointer;
+        font:
+          12px Arial,
+          sans-serif;
+      }
+      .btn {
+        padding: 15px 22px;
+        border: 1px solid #d8b8b9;
+        background: transparent;
+        color: #89495c;
+        border-radius: 50px;
+      }
+      .yes {
+        background: #8c3651;
+        color: #fff4ec;
+        border-color: #8c3651;
+      }
+      .btn:hover {
+        box-shadow: 0 4px 15px #8c36511a;
+      }
+      .small {
+        font:
+          11px/1.8 Arial,
+          sans-serif;
+        color: #a28687;
+      }
+      .result {
+        display: none;
+        text-align: center;
+        padding: 22px 0;
+      }
+      .result h3 {
+        font-size: 37px;
+        font-weight: normal;
+      }
+      .result p {
+        font-size: 16px;
+      }
+      .heart {
+        font-size: 60px;
+        color: #a54863;
+        display: block;
+      }
+      .copy {
+        margin-top: 12px;
+      }
+      .back {
+        display: block;
+        margin: 25px auto 0;
+        border: 0;
+        background: none;
+        color: #a07c80;
+        text-decoration: underline;
+        font-size: 11px;
+      }
+      .petal {
+        position: fixed;
+        pointer-events: none;
+        z-index: 20;
+        color: #b75c77;
+        animation: fall 4s ease-in forwards;
+        font-family: Georgia;
+        font-size: 22px;
+      }
+      .hidden {
+        display: none !important;
+      }
+      button:focus-visible {
+        outline: 3px solid #c28094;
+        outline-offset: 5px;
+      }
+      @keyframes arrive {
+        from {
+          opacity: 0;
+          transform: translateY(25px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fall {
+        0% {
+          transform: translateY(-30px) rotate(0);
+          opacity: 0;
+        }
+        15% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(105vh) rotate(260deg);
+          opacity: 0;
+        }
+      }
+      @media (max-width: 600px) {
+        header {
+          padding: 30px 28px;
+          font-size: 8px;
+          letter-spacing: 1.5px;
+        }
+        header span:last-child {
+          max-width: 100px;
+          text-align: right;
+          line-height: 1.7;
+        }
+        .page {
+          padding: 35px 26px;
+        }
+        h1 {
+          letter-spacing: -2px;
+        }
+        .letter {
+          padding: 35px 27px;
+          margin-top: 0;
+        }
+        .letter h2 {
+          font-size: 31px;
+        }
+        .letter p {
+          font-size: 15px;
+        }
+        .question h3 {
+          font-size: 28px;
+        }
+        .envelope {
+          margin-top: 50px;
+        }
+        .footer {
+          margin-top: 45px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+        .petal {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <span>P. G. &nbsp; / &nbsp; A note from the heart</span
+      ><span>For one special person</span>
+    </header>
+    <main class="page">
+      <section id="cover">
+        <div class="eyebrow">This little corner of the internet is for you</div>
+        <h1>Dear <i>Racheal,</i></h1>
+        <p class="intro">
+          There’s something I’ve been wanting to ask you.<br />So I made you a
+          little something.
+        </p>
+        <button
+          class="envelope"
+          id="open"
+          aria-label="Open your letter from Prince"
+        >
+          <span class="seal" aria-hidden="true">♥</span>
+        </button>
+        <div class="hint">Tap the envelope to open</div>
+        <div class="ornament" aria-hidden="true">❧</div>
+      </section>
+      <article
+        id="letter"
+        class="letter"
+        aria-label="A letter from Prince Godwyll"
+      >
+        <div class="eyebrow">Just a few honest words</div>
+        <h2>Racheal, here’s the thing…</h2>
+        <p>
+          I like you. And instead of keeping that to myself, I wanted to tell
+          you in a way that felt a little special.
+        </p>
+        <p>
+          I’d love the chance to get to know you more, spend time with you, and
+          see what we could become — together.
+        </p>
+        <p>
+          So, with a hopeful heart and a little courage, there’s one thing I
+          want to ask.
+        </p>
+        <p class="signature">Prince Godwyll</p>
+        <div id="question" class="question">
+          <h3>Will you be my girlfriend?</h3>
+          <div class="buttons">
+            <button class="btn yes" id="yes">Yes, I’d love to ♥</button
+            ><button class="btn" id="think">I need a little time</button
+            ><button class="btn" id="no">Not romantically</button>
+          </div>
+          <p class="small">Whatever your answer, I’m glad I told you.</p>
+        </div>
+        <section id="result" class="result" aria-live="polite" tabindex="-1">
+          <span class="heart" id="result-icon" aria-hidden="true">♡</span>
+          <h3 id="result-title"></h3>
+          <p id="result-text"></p>
+          <button class="btn copy" id="copy">Copy my reply</button>
+          <p class="small" id="reply-help">
+            Your answer stays on this page. Copy it and send it to Prince.
+          </p>
+          <button class="back" id="back">Back to the question</button>
+        </section>
+      </article>
+      <div class="footer">
+        Made with a little courage &amp; <span>a lot of heart.</span
+        ><br /><br />From Prince Godwyll, to Racheal.
+      </div>
+    </main>
+    <script>
+        //get any element by id
+      const $ = (id) => document.getElementById(id);
+      let reply = "";
+      $("open").onclick = () => {
+        $("cover").classList.add("hidden");
+        $("letter").classList.add("show");
+        $("letter").setAttribute("tabindex", "-1");
+        $("letter").focus();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      };
+      function answer(kind) {
+        const answers = {
+          yes: [
+            "♥",
+            "You just made me smile.",
+            "Here’s to getting to know each other, making memories, and seeing where this takes us. One little beginning, together.",
+            "Prince, yes — I’d love to be your girlfriend. ♥ — Racheal",
+          ],
+          think: [
+            "♡",
+            "Take your time, Racheal.",
+            "There’s no rush. I’d rather have an honest answer whenever you’re ready.",
+            "Prince, thank you for the lovely note. I need a little time to think. — Racheal",
+          ],
+          no: [
+            "❧",
+            "Thank you for being honest.",
+            "I respect how you feel. Thank you for reading my little note.",
+            "Prince, thank you for the thoughtful note. I don’t feel the same way romantically. — Racheal",
+          ],
+        };
+        let a = answers[kind];
+        $("question").classList.add("hidden");
+        $("result").style.display = "block";
+        $("result-icon").textContent = a[0];
+        $("result-title").textContent = a[1];
+        $("result-text").textContent = a[2];
+        $("copy").textContent = "Copy my reply";
+        reply = a[3];
+        $("result").focus();
+        if (
+          kind === "yes" &&
+          !matchMedia("(prefers-reduced-motion: reduce)").matches
+        ) {
+          for (let i = 0; i < 30; i++) {
+            let h = document.createElement("span");
+            h.className = "petal";
+            h.textContent = i % 3 ? "♥" : "✦";
+            h.style.left = Math.random() * 100 + "vw";
+            h.style.top = "-30px";
+            h.style.animationDelay = Math.random() * 1.8 + "s";
+            h.style.fontSize = 12 + Math.random() * 18 + "px";
+            document.body.append(h);
+            setTimeout(() => h.remove(), 6500);
+          }
+        }
+      }
+      ["yes", "think", "no"].forEach((k) => ($(k).onclick = () => answer(k)));
+      $("back").onclick = () => {
+        $("result").style.display = "none";
+        $("question").classList.remove("hidden");
+        $("yes").focus();
+      };
+      $("copy").onclick = async () => {
+        try {
+          await navigator.clipboard.writeText(reply);
+          $("copy").textContent = "Reply copied ♥";
+        } catch {
+          $("reply-help").textContent = reply;
+          $("copy").textContent = "Your reply is shown below";
+        }
+      };
+    </script>
+  </body>
+</html>
